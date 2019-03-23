@@ -3,21 +3,33 @@ numb = 7316717653133062491922511967442657474235534919493496983520312774506326239
 
 
 num = str(numb)
-number_list = []
-for i in num:
-    number_list += i
+test0 = 123456789
+test1 = 123491234
+test2 = 111111111111111111111
+test3 = 1111111111112222221111
 
-# create a new list for outputs of products of 13 digit subnumbers within the large number
-# while n + 13 < 1000, for each n, take the corresponding starting digit, multiply it enumeratively through the following 13 digits of the large number, and output to the list created earlier
+#write a function that iterates through a long number, checking for the products of small numbers of productComponents, and returning the largest of said products
 
-#create new list
-output_list = []
-n = 1
-while n + 13 < len(str(numb)) + 1:
-    print('number_list[n] = ' + str(number_list[n])) 
-    output = int(number_list[n])
-    for x in range(n, n + 12):
-        output = output * int(number_list[x])
-    n += 1
-    output_list.append(output)
-    print('output = ' + str(output) + ', output_list = ' + str(output_list))
+def main(arg):
+    largestProduct = 0
+    # iterate over all productComponents in the number excluding the last 3 
+    stringArg = str(arg)
+    for currentIndex in range(len(stringArg)-13):
+        print('currentInteger = ' + str(stringArg[currentIndex]))
+        print('currentIndex = ' + str(currentIndex))
+        currentProduct = 1
+        for productComponentIndex in range(int(currentIndex), int(currentIndex)+13):
+            print('productComponentIndex = ' + str(productComponentIndex))
+            currentProduct = currentProduct * int(stringArg[productComponentIndex])
+            print('currentProduct = ' + str(currentProduct))
+        if currentProduct > largestProduct:
+            largestProduct = currentProduct
+            print('largestProduct = ' + str(largestProduct))
+    print(str(largestProduct)) 
+    return largestProduct
+
+
+            
+    
+
+main(numb)
